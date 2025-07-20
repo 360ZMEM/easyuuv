@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="EasyUUV: An LLM-Enhanced Universal and Lightweight Sim-to-Real Reinforcement Learning Framework for UUV Attitude Control">
+  <meta name="keywords" content="Hand Trajectory Prediction, Egocentric Vision, Hand-Object Interaction">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Website: AUV-RSControl</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/AUVtest.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">EasyUUV: An LLM-Enhanced Universal and Lightweight Sim-to-Real Reinforcement Learning Framework for UUV Attitude Control</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://360zmem.github.io/">Guanwen Xie</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://2870325142.github.io/MiMi-Xu.github.io/">Jingzehua Xu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://github.com/Xiboxtg/">Yimian Ding</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://360zmem.github.io/LLM-RSControl">Zhi Zhang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://360zmem.github.io/LLM-RSControl">Shuai Zhang</a><sup>2</sup> and 
+            </span>
+            <span class="author-block">
+              <a href="https://360zmem.github.io/LLM-RSControl">Yi Li</a><sup>1</sup>
+            </span>
+          </div>
+
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Tsinghua Shenzhen International Graduate School, Tsinghua University
+            </span>
+            <span class="author-block"><sup>2</sup>Department of Data Science, New Jersey Institute of Technology
+            </span>
+
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2503.00527"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/360ZMEM/AUV-RSControl-Code"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="https://youtu.be/xFz9ZHqyQkg"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h1 class="title is-2">Introduction</h1>
+        <div class="content has-text-justified is-four-fifths">
+          <img src="./static/images/fig1.png"
+          class="architecture-image"
+          alt="architecture-image image."
+          style="width: 60%; display: block; margin: 0 auto;"/>
+          <p>‎</p>
+          <p>The adaptive control and maneuvering capabilities of Autonomous Underwater Vehicles (AUVs) have drawn significant attention, but achieving precise maneuvering control of AUVs is challenging due to their highly nonlinear dynamics, time-varying hydrodynamics, strong six-degree-of-freedom coupling, and environmental uncertainties. The contributions of this paper mainly include three parts:</p>
+          <ul>
+            <li>
+              We develop a novel AUV controller that employs RL to train an expert-level control strategy for high-level task execution and control command generation, while the S-surface controller produces control signals, ensuring cancellation of nonlinear effects and external disturbances under extreme sea conditions.
+            </li>
+            <li>
+              We utilize LLMs for joint optimization of RL reward function and controller parameters, utilizing multimodal task execution logs and combining contextual information such as environmental descriptions to enhance the final task performance and adaptability.
+            </li>
+            <li>
+              The proposed controller demonstrates superior robust ness and flexibility compared to conventional PID and SMC controllers in challenging marine conditions characterized by waves, currents, and complex terrain. It exhibits exceptional performance in advanced 3D tasks, including underwater target tracking and data collection tasks.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{xie2025AUVRScontrol,
+      title={Never too Prim to Swim: An LLM-Enhanced RL-based Adaptive S-Surface Controller for AUVs under Extre Sea Conditions},
+      author={Xie, Guanwen and Xu, Jingzehua and Ding, Yimian and Zhang, Zhi and Zhang, Shuai and Li, Yi},
+      journal={arXiv preprint arXiv:2503.00527},
+      year={2025}
+    }
+</code></pre>
+  </div>
+</section>
+
+<!-- <section class="section" id="BibTeX"></section>
+  <div class="container is-max-desktop content">
+    <h2 class="title"></h2>
+    <img src="./static/images/FIN.jpg"
+       class="architecture-image"
+       alt="architecture-image image."
+       style="width: 50%; display: block; margin: 0 auto;"/>
+       <p><a href="https://en.wikipedia.org/wiki/Endro!">©ERP / ENDRO! Production Committee</a></p>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://arxiv.org/pdf/2503.00527.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/360ZMEM/AUV-RSControl-Code" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            The code template borrows from <a rel="license"
+                                                href="https://github.com/nerfies/nerfies.github.io">this repository</a>.
+          </p>
+          <p>The page was last updated at Mar 6 2025, UTC+0 13:53.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>

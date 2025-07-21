@@ -1,6 +1,10 @@
-# LLMRsearcher
+# EasyUUV
 
-This is the repository that contains source code for the [LLMs as Efficient Reward Function Searchers for Custom-Environment MORL](https://360zmem.github.io/LLMRsearcher).
+The RL policy training and simulation code repository refers to [**HERE**](https://github.com/360ZMEM/EasyUUV-Isaac-Simulation)
+
+The hardware deployment code repository refers to [**HERE**](https://github.com/360ZMEM/EasyUUV-UUV-Deploy)
+
+
 
 If you find it useful for your work please cite:
 ```

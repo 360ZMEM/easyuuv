@@ -6,7 +6,7 @@
         content="EasyUUV: An LLM-Enhanced Universal and Lightweight Sim-to-Real Reinforcement Learning Framework for UUV Attitude Control">
   <meta name="keywords" content="Hand Trajectory Prediction, Egocentric Vision, Hand-Object Interaction">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Website: AUV-RSControl</title>
+  <title>Website: EasyUUV</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -56,24 +56,28 @@
             <span class="author-block">
               <a href="https://2870325142.github.io/MiMi-Xu.github.io/">Jingzehua Xu</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://github.com/Xiboxtg/">Yimian Ding</a><sup>1</sup>,
+              <a href="https://360zmem.github.io/easyuuv/">Jiwei Tang</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="https://360zmem.github.io/LLM-RSControl">Zhi Zhang</a><sup>1</sup>,
+              <a href="https://360zmem.github.io/easyuuv/">Yubo Huang</a><sup>3</sup>,
             </span>
             <span class="author-block">
-              <a href="https://360zmem.github.io/LLM-RSControl">Shuai Zhang</a><sup>2</sup> and 
+              <a href="https://360zmem.github.io/easyuuv/">Shuai Zhang</a><sup>4</sup> and 
             </span>
             <span class="author-block">
-              <a href="https://360zmem.github.io/LLM-RSControl">Yi Li</a><sup>1</sup>
+              <a href="https://360zmem.github.io/easyuuv/">Xiaofan Li</a><sup>3</sup>
             </span>
           </div>
 
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Tsinghua Shenzhen International Graduate School, Tsinghua University
+            <span class="author-block"><sup>1</sup>Tsinghua University
             </span>
-            <span class="author-block"><sup>2</sup>Department of Data Science, New Jersey Institute of Technology
+            <span class="author-block"><sup>2</sup>The University of Hong Kong
+            </span>
+            <span class="author-block"><sup>3</sup>Southwest Jiaotong University
+            </span>
+            <span class="author-block"><sup>4</sup> New Jersey Institute of Technology
             </span>
 
           </div>
@@ -92,12 +96,21 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/360ZMEM/AUV-RSControl-Code"
+                <a href="https://github.com/360ZMEM/EasyUUV-Isaac-Simulation"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Code</span>
+                  <span>Code (Sim)</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/360ZMEM/EasyUUV-UUV-Deploy"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Real)</span>
                   </a>
               </span>
               <span class="link-block">
@@ -115,6 +128,32 @@
         </div>
       </div>
     </div>
+
+    <!-- 这一部分务必注意：不用渐入，直接引入正题，放视频，另外降低音量 -->
+<div class="columns is-centered has-text-centered">
+                <div class="column is-three-fifths">
+    
+                  <video id="matting-video" controls loop playsinline height="100%">
+                    <source src="./static/videos/intro.mp4"
+                            type="video/mp4">
+                  </video>
+                  <p>
+                    Accompnying Video
+                  </p>
+                </div>
+              </div>
+
+    <div class="columns is-centered has-text-justified">
+        <div class="column is-four-fifths">
+          <p> <b>Figure👇:</b> Overall architecture of the EasyUUV framework, which comprise three parts: (a) RL and adaptive S-Surface-based composite controller module; (b) parallelized reinforcement learning environment developed on NVIDIA Isaac Lab; and (c) multimodal LLM adjustment module for real-world adaption.</p>
+          <p>‎</p>
+          <img src="./static/images/arc.png"
+     class="architecture-image"
+     alt="architecture-image image."
+     style="width: 72%; display: block; margin: 0 auto;"/>
+          <!-- <p>‎</p> -->
+          </div></div>
+
   </div>
 </section>
 
@@ -126,21 +165,23 @@
       <div class="column is-four-fifths">
         <h1 class="title is-2">Introduction</h1>
         <div class="content has-text-justified is-four-fifths">
-          <img src="./static/images/fig1.png"
+          <img src="./static/images/intro.png"
           class="architecture-image"
           alt="architecture-image image."
-          style="width: 60%; display: block; margin: 0 auto;"/>
+          style="width: 90%; display: block; margin: 0 auto;"/>
           <p>‎</p>
-          <p>The adaptive control and maneuvering capabilities of Autonomous Underwater Vehicles (AUVs) have drawn significant attention, but achieving precise maneuvering control of AUVs is challenging due to their highly nonlinear dynamics, time-varying hydrodynamics, strong six-degree-of-freedom coupling, and environmental uncertainties. The contributions of this paper mainly include three parts:</p>
+          <p>Although notable progress has been made in Unmanned Underwater Vehicles (UUVs) attitude control, most existing approaches still face challenges in achieving broad generalizability, maintaining robustness under real-world disturbances, and improving deployment efficiency.</p>
+
+          <p>To address above challenges, this paper presents EasyUUV, an LLM-enhanced, universal, and lightweight Sim-to-Real reinforcement learning (RL) framework for robust attitude control of UUVs. Our main contributions are summarized as follows: </p>
           <ul>
             <li>
-              We develop a novel AUV controller that employs RL to train an expert-level control strategy for high-level task execution and control command generation, while the S-surface controller produces control signals, ensuring cancellation of nonlinear effects and external disturbances under extreme sea conditions.
+              <b>A universal and lightweight RL-based control framework:</b> EasyUUV supports scalable Sim2Real attitude control through platform-agnostic modeling and a CUDA-accelerated parallelized RL training architecture. To enhance control performance under noise and disturbances, we further develop an A-S-Surface controller that integrates nonlinear control and adaptive compensation for improved robustness.
             </li>
             <li>
-              We utilize LLMs for joint optimization of RL reward function and controller parameters, utilizing multimodal task execution logs and combining contextual information such as environmental descriptions to enhance the final task performance and adaptability.
+              <b>LLM-driven adaptive controller tuning:</b> EasyUUV integrates a multimodal LLM-based module that adaptively adjusts controller parameters at runtime based on historical dynamic responses and real-time sensory feedback, enabling robust adaptation without retraining.
             </li>
             <li>
-              The proposed controller demonstrates superior robust ness and flexibility compared to conventional PID and SMC controllers in challenging marine conditions characterized by waves, currents, and complex terrain. It exhibits exceptional performance in advanced 3D tasks, including underwater target tracking and data collection tasks.
+              <b>Zero-shot transfer and extensive experiments:</b> We develop a low-cost UUV platform integrated with our LLM-enhanced Sim2Real RL framework, enabling zero-shot transfer of expert policies from simulation to reality. Validated through tank experiments and sea trials, EasyUUV showcases outperforming robustness and adaptivity across diverse conditions in attitude control.
             </li>
           </ul>
         </div>
@@ -150,6 +191,376 @@
   </div>
 </section>
 
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h1 class="title is-2">Parallelized Simulation</h1>
+
+<div class="columns is-centered has-text-centered">
+
+            <!-- Visual Effects. -->
+            <div class="column">
+              <div class="content">
+                
+                <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/isaac1.mp4"
+                          type="video/mp4">
+                </video>
+                <p>
+                    Before training (~20ep)
+                  </p>
+              </div>
+            </div>
+            <!--/ Visual Effects. -->
+      
+            <!-- Matting. -->
+            <div class="column">
+              <div class="columns is-centered has-text-centered">
+                <div class="column content">
+    
+                  <video id="matting-video" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/isaac2.mp4"
+                            type="video/mp4">
+                  </video>
+                  <p>
+                    After training (~400ep)
+                  </p>
+                </div>
+      
+              </div>
+            </div>
+  </div>
+
+        <div class="content has-text-justified is-four-fifths">
+          <p>‎</p>
+
+          
+
+
+          <ul>
+            <li>
+              The parallelized simulation environment is built on NVIDIA Isaac Lab, with CUDA/NVIDIA PhysX acceleration.
+            </li>
+            <li>
+              We implement MuJoCo-based hydrodynamic modeling, thruster dynamics modeling to capture the salient feature of the complex dynamics of UUV deployment.
+
+            </li>
+            <li>
+              Also, we implement domain randomization (DR) to improve policy generalization and real-world adaptability. During training, key parameters such as the CoB–CoM offset and controller gains are randomly perturbed to account for structural and dynamic variations.
+            </li>
+            <li>
+              For RTX4060, a typical low-end consumer-grade GPU, A total of 460 episodes (~3e7 timesteps) are completed in approximately 130 seconds, achieving rapid iteration and high performance.
+            </li>
+          </ul>
+
+          
+          <img src="./static/images/thrust.png"
+          class="architecture-image"
+          alt="architecture-image image."
+          style="width: 55%; display: block; margin: 0 auto;"/>
+          <p>‎</p>
+          <div class="columns is-centered has-text-centered">
+            <p> Image: Thrust (N) vs. Normalized PWM Value (corresponding to 1100–1900 μs) for the Blue Robotics T200 Thruster (16V Voltage).</p></div>
+
+        </div>
+      </div>
+    </div>
+
+    
+
+          
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h1 class="title is-2">Real-World Deployment</h1>
+        <div class="content has-text-justified is-four-fifths">
+
+          <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+
+                  <video id="matting-video" controls loop playsinline autoplay muted height="100%">
+                    <source src="./static/videos/3dmodel.mp4"
+                            type="video/mp4">
+                  </video>
+                  <p>
+                    EasyUUV testbed 3D Model
+                  </p>
+                </div>
+              </div>
+
+          <ul>
+            <li>
+              Our EasyUUV hardware platform is a compact, low-cost (~$1000 USD), modular testbed designed for RL-based Sim2Real control, featuring 3D-printed ABS and aluminum construction for durability and ease of fabrication.
+            </li>
+            <li>
+              It employs eight eight custom-built thrusters with thrust characteristics similar to Blue Robotics T200 in a 6-DOF configuration for precise attitude control, with vibration isolation to reduce sensor interference.
+            </li>
+            <li>
+              An ESP32-WROOM microcontroller executes the A-S-Surface controller at 100Hz using simulation- and HIL-calibrated gains, receiving real-time commands via a low-latency RS-485 tether (≤10ms) that also runs the PyTorch JIT-based RL policy.
+            </li>
+            <li>
+              Sensor fusion uses a 9-DOF MPU9250 IMU with complementary filtering; the entire system fits in a 30L waterproof case, weighs under 20kg, and supports single-user operation.
+            </li>
+            <li>
+              By using off-the-shelf components and closely matching simulation dynamics, EasyUUV enables robust, portable, and research-grade Sim2Real transfer.
+            </li>
+          </ul>
+
+
+          <div class="columns is-centered has-text-centered">
+            <!-- Visual Effects. -->
+            <div class="column">
+              <div class="content">
+                
+                <img src="./static/images/UUV_exp.png"
+          class="architecture-image"
+          alt="architecture-image image."
+          style="width: 79%; display: block; margin: 0 auto;"/>
+          <!-- <p>‎</p>
+          <div class="columns is-centered has-text-centered">
+            <p> Exploded view</p></div> -->
+              </div>
+            </div>
+            <!--/ Visual Effects. -->
+      
+            <!-- Matting. -->
+            <div class="column">
+              <div class="columns is-centered has-text-centered">
+                <div class="column content">
+    
+                  <img src="./static/images/AUVtest.png"
+          class="architecture-image"
+          alt="architecture-image image."
+          style="width: 79%; display: block; margin: 0 auto;"/>
+          <!-- <p>‎</p>
+          <div class="columns is-centered has-text-centered">
+            <p> Image: Thrust (N) vs. Normalized PWM Value (corresponding to 1100–1900 μs) for the Blue Robotics T200 Thruster.</p></div> -->
+                </div>
+      
+              </div>
+            </div>
+  </div>
+
+
+
+
+
+        </div>
+
+        
+
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h1 class="title is-2">Experimental Results</h1>
+
+
+        <div class="columns is-centered has-text-justified">
+        
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Experiment Setup</h2>
+        <div class="content has-text-justified">
+          <img src="./static/images/set2.png"
+          class="architecture-image"
+          alt="architecture-image image."
+          style="width: 55%; display: block; margin: 0 auto;"/>
+          <p>‎</p>
+          <div class="columns is-centered has-text-centered">
+            <p> Experimental testbed for real-world validation of EasyUUV. (Tank Experiment).</p></div>
+        </div></div></div>
+        <p>‎</p>
+
+
+
+        <div class="columns is-centered has-text-justified">
+        
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Simulation Results</h2>
+        <div class="content has-text-justified">
+
+          
+            <div class="columns is-centered has-text-centered">
+              <div class="column content">
+          <video id="matting-video" controls loop playsinline autoplay muted height="80%">
+                    <source src="./static/videos/video2.mp4"
+                            type="video/mp4">
+                            
+                  </video>
+                <p>Simulation videos (left: A-S-Surface, right: A-S-Surface+RL). The results underscore the advantage of integrating RL with adaptive control, especially multi-axis attitude tracking robustness.</p></div>
+                </div>
+
+                <img src="./static/images/exp2.png"
+          class="architecture-image"
+          alt="architecture-image image."
+          style="width: 100%; display: block; margin: 0 auto;"/>
+                <p> Comparison of MSE across two tasks for different controllers, under both RL and non-RL settings (simulation). Left: w/o RL, Right: w/ RL.</p>
+
+                <img src="./static/images/exp3.png"
+          class="architecture-image"
+          alt="architecture-image image."
+          style="width: 100%; display: block; margin: 0 auto;"/>
+          <img src="./static/images/exp4.png"
+          class="architecture-image"
+          alt="architecture-image image."
+          style="width: 100%; display: block; margin: 0 auto;"/>
+          
+          <p>‎</p>
+          <div class="columns is-centered has-text-centered">
+            <p> Comparison of tracking response curves and compund error for different control strategies. Specifically, A-S-Surface converges the fastest and achieves the highest final reward, indicating superior learning efficiency. Besides, S-Surface shows slower convergence and lower reward, while PID performs worst with minimal improvement.</p></div>
+            <p>‎</p> 
+
+            <div class="columns is-centered has-text-centered">
+              <div class="column content">
+          <video id="matting-video" controls loop playsinline autoplay muted height="80%">
+                    <source src="./static/videos/video1.mp4"
+                            type="video/mp4">
+                            
+                  </video>
+                <p>We next examine the effect of DR for RL training. DR notably reduce performance loss, with SDR consistently achieving better out-of-domain performance and stability.</p></div>
+                </div>
+
+          <img src="./static/images/exp_dr.png"
+          class="architecture-image"
+          alt="architecture-image image."
+          style="width: 80%; display: block; margin: 0 auto;"/>
+          <p>‎</p>
+          <div class="columns is-centered has-text-centered">
+            <p> The MSE results under varying DR levels.</p></div>
+            <p>‎</p> 
+
+        </div></div></div>
+
+
+        <div class="columns is-centered has-text-justified">
+        
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Real-World Deployment (Tank)</h2>
+        <div class="content has-text-justified">
+
+          <p>
+              EasyUUV achieves strong disturbance rejection, can quickly recover from transient disturbances, and also demonstrates certain position-holding capability.
+            </p>
+
+          <div class="columns is-centered has-text-centered">
+
+            
+            <!-- Visual Effects. -->
+            <div class="column">
+              <div class="content">
+                
+                <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/video4.mp4"
+                          type="video/mp4">
+                </video>
+                <p>
+                    <b>Pertubation Only.</b> 
+                  </p>
+              </div>
+            </div>
+            <!--/ Visual Effects. -->
+      
+            <!-- Matting. -->
+            <div class="column">
+              <div class="columns is-centered has-text-centered">
+                <div class="column content">
+    
+                  <video id="matting-video" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/video5.mp4"
+                            type="video/mp4">
+                  </video>
+                  <p>
+                    <b>Pertubation + Manual Disturbance.</b>
+                  </p>
+                </div>
+      
+              </div>
+            </div>
+  </div>
+
+            <img src="./static/images/Fig9.png"
+          class="architecture-image"
+          alt="architecture-image image."
+          style="width: 99%; display: block; margin: 0 auto;"/>
+          <img src="./static/images/Fig10.png"
+          class="architecture-image"
+          alt="architecture-image image."
+          style="width: 99%; display: block; margin: 0 auto;"/>
+          <p>‎</p>
+          <div class="columns is-centered has-text-centered">
+            <p> Comparison of tracking response and compund error curves for different control tasks with and without RL policy (Real-world experiment). (a) Yaw+Roll. (b) Yaw+Pitch.</p></div>
+            <p>‎</p> 
+
+
+            <img src="./static/images/Fig11a.png"
+          class="architecture-image"
+          alt="architecture-image image."
+          style="width: 59%; display: block; margin: 0 auto;"/>
+          <p>‎</p>
+          <div class="columns is-centered has-text-centered">
+            <p>Tracking response curves of tank experiment (with manual disturbance)</p></div>
+            <p>‎</p> 
+
+            <div class="columns is-centered has-text-centered">
+              <div class="column content">
+          <video id="matting-video" controls loop playsinline autoplay muted height="80%">
+                    <source src="./static/videos/video3.mp4"
+                            type="video/mp4">
+                            
+                  </video>
+                <p>Tracking response curves and LLM-generated controller adjustments under turbulence scenario. LLM generate adjustment recommendation based on visual logs and textual data. The LLM can generate recommendation within 5s, and the performance significantly increase. 
+</p></div>
+                </div>
+
+        </div></div></div>
+
+      <div class="columns is-centered has-text-justified">
+        
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Real-World Deployment (Sea Trial)</h2>
+        <div class="content has-text-justified">
+
+
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+
+                  <video id="matting-video" controls loop playsinline autoplay muted height="100%">
+                    <source src="./static/videos/VIDEO6.mp4"
+                            type="video/mp4">
+                  </video>
+                  <p>
+                    We conduct outdoor experiment in a estuary at Shenzhen Bay Park, where the turbulent current poses a significant challenge to the attitude control. EasyUUV still achieved reasonable attitude control performance in this environment with strong uncertainty.
+                  </p>
+                </div>
+              </div>
+
+
+        </div></div></div>
+
+
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
@@ -183,7 +594,7 @@
          href="https://arxiv.org/pdf/2503.00527.pdf">
         <i class="fas fa-file-pdf"></i>
       </a>
-      <a class="icon-link" href="https://github.com/360ZMEM/AUV-RSControl-Code" class="external-link" disabled>
+      <a class="icon-link" href="https://github.com/360ZMEM/" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>
     </div>
@@ -194,7 +605,7 @@
             The code template borrows from <a rel="license"
                                                 href="https://github.com/nerfies/nerfies.github.io">this repository</a>.
           </p>
-          <p>The page was last updated at Mar 6 2025, UTC+0 13:53.</p>
+          <p>The page was last updated at Aug 11 2025, UTC+0 13:53.</p>
         </div>
       </div>
     </div>
